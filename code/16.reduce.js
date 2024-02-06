@@ -1,21 +1,3 @@
-// Array.prototype.myReduce = function (callback, preValue) {
-//   if (typeof callback !== 'function') {
-//     throw new Error(`${callback} is not a function !`)
-//   }
-
-//   let index = 0
-//   let len = this.length
-//   if (preValue === undefined || preValue === null) {
-//     index = 1
-//     preValue = this[0]
-//   }
-
-//   for (; index < len; index++) {
-//     preValue = callback(preValue, this[index], index, this)
-//   }
-//   return preValue
-// }
-
 Array.prototype.myReduce = function (callback, preValue) {
   if (typeof callback !== 'function') {
     throw new Error(`${callback} is not a function!`)
