@@ -6,20 +6,20 @@ const arr = [
   { node: 'f', children: ['g'] },
   { node: 'e', children: ['h'] },
 ]
-const array2Tree = (arr)=>{
+const array2Tree = (arr) => {
   const res = {}
   const temp = {}
   const childrenArr = []
-  for(const item of arr){
-    const {node,children} = item
+  for (const item of arr) {
+    const { node, children } = item
     childrenArr.push(...children)
     temp[node] = {}
-    children.forEach(child=>temp[node][child] = null)
+    children.forEach((child) => (temp[node][child] = null))
   }
-  for(const key in temp){
+  for (const key in temp) {
     const isRoot = !childrenArr.includes(key)
-    if(isRoot) res[key] = temp[key]
-    for(const i in temp[key]){
+    if (isRoot) res[key] = temp[key]
+    for (const i in temp[key]) {
       temp[key][i] = temp[i] || null
     }
   }
@@ -48,6 +48,7 @@ console.log(JSON.stringify(array2Tree(arr), null, 2))
 
 // 给你一个对象{'a':1,'b.c.d':2,'b.c.e':3}，实现一个函数把它展开成{'a':1,'b':{'c':{'d':2,'e':3}}}这种形式。
 const obj = { a: 1, 'b.c.d': 2, 'b.c.e': 3 }
+
 function flattenObject(obj) {
   const res = {}
   for (const key in obj) {
