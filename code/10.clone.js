@@ -2,7 +2,6 @@
 //为什么使用 weakmap 是它不会阻止原始对象被垃圾回收，因为 WeakMap 中的键是弱引用的。
 //一旦原始对象没有其他引用，它就可以被垃圾回收，同时也会从 WeakMap 中自动删除对应的键值对，避免内存泄漏。
 
-
 // map 用于记录出现过的对象, 解决循环引用
 const deepClone = (target, map = new WeakMap()) => {
   // 1. 对于基本数据类型(string、number、boolean……), 直接返回
@@ -35,6 +34,26 @@ const deepClone = (target, map = new WeakMap()) => {
   return cloneTarget
 }
 
+function deepClone2(target, map = new WeakMap()) {
+  if (typeof target !== 'object' || typeof target === null) {
+    return target
+  }
+  const constructor = target.constructor
+  if (/$(Function|Map|Date)^/i.test(constructor.name)) {
+    return new constructor(target)
+  }
+  if (map.has(target)) {
+    return map.get(target)
+  }
+  const cloneTarget = Array.isArray(target) ? [] : {}
+  map.set(target, cloneTarget)
+  Object.keys(target).forEach((key) => {
+    cloneTarget[key] = deepClone2(target[key], map)
+  })
+  return cloneTarget
+}
+
+// const obj = deepClone(obj1)
 // 示例对象
 const obj1 = {
   name: 'John',
@@ -45,10 +64,10 @@ const obj1 = {
     country: 'USA',
   },
 }
-
 // 深克隆对象
-const obj2 = deepClone(obj1)
 
+// const obj2 = deepClone2(obj1)
+const obj2 = {...obj1}
 // 修改克隆对象的属性
 obj2.name = 'Jane'
 obj2.hobbies.push('cooking')

@@ -1,149 +1,5 @@
 // let nums = [8, 7, 1, 4, 3, 5]
 
-// function quickSort3(arr, low, high) {
-//   if (low < high) {
-//     const pivotIndex = partition(arr, low, high);
-//     quickSort3(arr, low, pivotIndex - 1);
-//     quickSort3(arr, pivotIndex + 1, high);
-//   }
-// }
-
-// const quickSort = (arr,low,high)=>{
-//   if(low < high){
-//     const pivotIndex = partition(arr,low,high)
-
-//   }
-// }
-
-// const partition = (arr,low,high)=>{
-//   const pivot = arr[high]
-//   let i = low-1
-//   for(let j = low;j<high;j++){
-//     if(arr[j]<pivot){
-//       i++
-//       swap(arr,i,j)
-//     }
-//   }
-//   swap(arr,i+1,high)
-// }
-
-// function partition(arr, low, high) {
-//   const pivot = arr[high]; // 选择最后一个元素作为基准值
-//   let i = low - 1;
-//   for (let j = low; j < high; j++) {
-//     if (arr[j] < pivot) {
-//       i++;
-//       swap(arr, i, j);
-//     }
-//   }
-//   swap(arr, i + 1, high);
-//   return i + 1;
-// }
-
-// function swap(arr, i, j) {
-//   const temp = arr[i];
-//   arr[i] = arr[j];
-//   arr[j] = temp;
-// }
-// const res3 = quickSort3(nums,0,nums.length-1)
-// console.log('res3',res3)
-
-// const QuickSort = (nums) => {
-//   const len = nums.length
-//   if (len <= 1) return nums
-//   const mid = Math.floor(len / 2)
-//   const base = nums.splice(mid, 1)[0]
-//   const left = [],
-//     right = []
-//   nums.forEach((num) => {
-//     if (num > base) {
-//       right.push(num)
-//     } else {
-//       left.push(num)
-//     }
-//   })
-//   return QuickSort(left).concat(base).concat(QuickSort(right))
-// }
-
-// const res2 = QuickSort(nums)
-// console.log('res2', res2)
-
-// const quickSort = (arr) => {
-//   const swap = (arr, i, j) => {
-//     let temp = arr[i]
-//     arr[i] = arr[j]
-//     arr[j] = temp
-//   }
-//   const quick = (arr, left, right) => {
-//     let index
-//     if (left < right) {
-//       index = partition(arr, left, right)
-//       if (left < index - 1) {
-//         quick(arr, left, index - 1)
-//       }
-//       if (index < right) {
-//         quick(arr, index, right)
-//       }
-//     }
-//   }
-//   const partition = (arr, left, right) => {
-//     let [i, j] = [left, right]
-//     const base = arr[Math.floor(Math.random() * (right - left + 1) + left)]
-//     while (i <= j) {
-//       while (arr[i] < base) {
-//         i++
-//       }
-//       while (arr[j] > base) {
-//         j--
-//       }
-//       if (i <= j) {
-//         swap(arr, i, j)
-//         i += 1
-//         j -= 1
-//       }
-//     }
-//     return i
-//   }
-
-//   quick(arr, 0, arr.length - 1)
-//   return arr
-// }
-
-// const res = quickSort(nums)
-// console.log('res', res)
-
-// let partition = (arr, left, right) => {
-//   let [i, j] = [left, right]
-//   const base = arr[Math.floor(Math.random() * (right - left + 1)) + left]
-//   while (i <= j) {
-//     while (arr[i] < base) {
-//       i++
-//     }
-//     while (arr[j] > base) {
-//       j--
-//     }
-//     if (i <= j) {
-//       swap(arr, i, j)
-//       i += 1
-//       j -= 1
-//     }
-//   }
-//   return i
-// }
-
-// let swap = (arr, i, j) => {
-//   let temp = arr[i]
-//   arr[i] = arr[j]
-//   arr[j] = temp
-// }
-
-// // 测试
-// let arr = [1, 3, 2, 5, 4]
-// quickSort(arr)
-// console.log(arr) // [1, 2, 3, 4, 5]
-// // 第 2 个最大值
-// console.log(arr[arr.length - 2]) // 4
-
 // const bubbleSort = (nums) => {
 //   const len = nums.length
 //   for (let i = 0; i < len; i++) {
@@ -213,23 +69,24 @@
 
 // // console.log(mergeSort(nums));
 
-const quickSort2 = (nums) => {
-  const len = nums.length
-  if (len <= 1) return nums
-  const mid = Math.floor(len / 2)
-  let base = nums.splice(mid, 1)[0]
-  const left = []
-  const right = []
-  nums.forEach((item) => {
-    if (item > base) right.push(item)
-    else left.push(item)
-  })
-  return quickSort2(left).concat(base, quickSort2(right))
-}
-
 // // const arr = [9, 5, 2, 7, 1, 8];
 // // quickSort2(arr, 0, arr.length - 1);
 // // console.log(arr); // 输出：[1, 2, 5, 7, 8, 9]
+
+
+
+// function quickSort(nums) {
+//   const len = nums.length
+//   if (len <= 1) return nums
+//   const mid = Math.floor(len / 2)
+//   let base = nums.splice(mid, 1)[0]
+//   const [left, right] = [[], []]
+//   nums.forEach((num) => {
+//     if (num > base) right.push(num)
+//     else left.push(num)
+//   })
+//   return quickSort(left).concat(base, quickSort(right))
+// }
 
 // const quickSort = (arr,left=0,right=arr.length-1)=>{
 //   const partition = (arr,left,right)=>{
@@ -252,47 +109,55 @@ const quickSort2 = (nums) => {
 //     quickSort(arr,left,pivotIndex-1)
 //     quickSort(arr,pivotIndex+1,right)
 //   }
+//   return arr
 // }
 
+// const arr = [5, 2, 7, 1, 9, 3]
+// const res = quickSort(arr) 
+// console.log('res', res)// 输出 [1, 2, 3, 5, 7, 9]
 
-// const quickSort = (nums) => {
-//   const len = nums.length
-//   if (len <= 1) return nums
-//   const mid = Math.floor(len / 2)
-//   const base = nums.splice(mid, 1)[0]
-//   const left = []
-//   const right = []
-//   nums.forEach(num => {
-//     if (num < base) left.push(num)
-//     else right.push(num)
-//   });
-//   return quickSort(left).concat(base).concat(quickSort(right))
-// }
-// const nums = [2, 1, 6, 3, 4, 5]
-// console.log('quickSort(nums)', quickSort(nums))
-// // 示例
-
-const quickSort = (nums) => {
-  const len = nums.length
-  if (len <= 1) return nums
-
-  const baseIndex = Math.floor(len / 2)
-  const base = nums[baseIndex]
-  const left = []
-  const right = []
-
-  for (let i = 0; i < len; i++) {
-    if (i === baseIndex) continue
-    if (nums[i] < base) {
-      left.push(nums[i])
-    } else {
-      right.push(nums[i])
+function quickSort(arr,left=0,right=arr.length-1){
+  if(left<right){
+    let pivot = right
+    let pivotIndex = partition(arr,pivot,left,right)
+    quickSort(arr,left,pivotIndex-1)
+    quickSort(arr,pivotIndex+1,right)
+  }
+  return arr
+}
+function partition(arr,pivot,left,right){
+  let pivotValue = arr[pivot]
+  let index = left
+  for(let i = left;i<right;i++){
+    if(arr[i]<pivotValue){
+      swap(arr,i,index)
+      index++
     }
   }
-
-  return [...quickSort(left), base, ...quickSort(right)]
+  swap(arr,index,right)
+  return index
 }
-const arr = [5, 2, 7, 1, 9, 3]
-const res = quickSort(arr)
-console.log('res',res)
-console.log(arr) // 输出 [1, 2, 3, 5, 7, 9]
+
+// function partition(array, pivot, left, right) {
+//   let pivotValue = array[pivot];
+//   let partitionIndex = left;
+
+//   for (let i = left; i < right; i++) {
+//       if (array[i] < pivotValue) {
+//           swap(array, i, partitionIndex);
+//           partitionIndex++;
+//       }
+//   }
+//   swap(array, right, partitionIndex);
+//   return partitionIndex;
+// }
+
+function swap(array, i, j) {
+  let temp = array[i];
+  array[i] = array[j];
+  array[j] = temp;
+}
+
+// 使用示例
+const arr = [5, 3, 7, 6, 2, 9];
+console.log(quickSort(arr));  // 输出：[2, 3, 5, 6, 7, 9]

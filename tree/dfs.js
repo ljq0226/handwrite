@@ -11,6 +11,36 @@ const preorderTraversal = (root) => {
   dfs(root)
   return res
 }
+
+function preOrder(root) {
+  const res = []
+  const dfs = (root) => {
+    if (!root) return
+    res.push(root.val)
+    dfs(root.left)
+    dfs(root.right)
+  }
+  dfs(root)
+  return res
+}
+
+function Order(root) {
+  const stack = []
+  const res = []
+  if (root) stack.push(root)
+  while (stack.length) {
+    //中左右
+    const node = stack.pop()
+    if (!node) {
+      res.push(stack.pop().val)
+    }
+    node.right && stack.push(node.right)
+    node.left && stack.push(node.left)
+    stack.push(node)
+    stack.push(null)
+  }
+  return res
+}
 //迭代
 const preorderTraversal2 = (root) => {
   const stack = []

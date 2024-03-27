@@ -1,6 +1,22 @@
 // 手写call
 //fn.call(obj,1,2)
 Function.prototype.call = function (context, ...args) {
+  context = context || window
+  let fn = Symbol()
+  context[fn] = this
+  let res = context[fn](...args)
+  delete context[fn]
+  return res
+}
+Function.prototype.apply = function (context, args) {
+  context = context || window
+  let fn = Symbol()
+  context[fn] = this
+  const res = context[fn](...args)
+  delete context[fn]
+  return res
+}
+Function.prototype.call = function (context, ...args) {
   // context为undefined或null时，则this默认指向全局window
   if (context === undefined || context === null) {
     context = window
@@ -15,7 +31,6 @@ Function.prototype.call = function (context, ...args) {
   delete context[fn]
   return res
 }
-
 // apply与call相似，只有第二个参数是一个数组，
 Function.prototype.apply = function (context, args) {
   if (context === undefined || context === null) {
@@ -67,6 +82,18 @@ Function.prototype.Bind = function (context, ...args) {
 function myBind(context, ...args) {
   if (typeof this !== 'function') {
     throw TypeError('type error,must be a functino')
+  }
+  context = context || window
+  const fn = this
+  return function F() {
+    return fn.apply(this instanceof F ? this : context, args.concat(...arguments))
+  }
+}
+
+const p = fn.bind(obj, ...args)
+Function.prototype.bind = function (context, ...args) {
+  if (typeof this !== 'function') {
+    throw new TypeError('must be a function')
   }
   context = context || window
   const fn = this

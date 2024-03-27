@@ -300,37 +300,6 @@ obj2.address.city = 'San Francisco';
 // console.log(obj1);
 // console.log(obj2);
 
-class EventBus{
-  constructor(){
-    this.task = {}
-  }
-  on(type,fn){
-    if(!this.task[type]){
-      this.task[type] = []
-    }
-    this.task[type].push(fn)
-  }
-  emit(type,...args){
-    if(this.task[type]){
-      this.task[type].map(item=>{
-        item(...args)
-      })
-    }
-  }
-  off(type,fn){
-    if(this.task[type]){
-      this.task[type] = this.task[type].filter(item=>item!==fn)
-    }
-  }
-  once(type,fn){
-    const f = (...args)=>{
-      fn(...args)
-      this.off(type,fn)
-    }
-    this.on(type,f)
-  }
-}
-
 //发布订阅
 class Eventbus{
   constructor(){
