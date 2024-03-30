@@ -67,7 +67,7 @@ const obj1 = {
 // 深克隆对象
 
 // const obj2 = deepClone2(obj1)
-const obj2 = {...obj1}
+const obj2 = { ...obj1 }
 // 修改克隆对象的属性
 obj2.name = 'Jane'
 obj2.hobbies.push('cooking')

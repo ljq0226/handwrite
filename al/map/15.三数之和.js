@@ -29,30 +29,6 @@ function findThreeSum(nums, target) {
   }
   return res
 }
-// function findThree(nums, target) {
-//   const res = []
-//   const len = nums.length
-//   nums.sort((a, b) => a - b)
-//   for (let i = 0; i < len - 2; i++) {
-//     if (i && nums[i] == nums[i - 1]) continue
-//     let [l, r] = [i + 1, len - 1]
-//     while (l < r) {
-//       const sum = nums[i] + nums[l] + nums[r]
-//       if (sum > target) {
-//         r--
-//       } else if (sum < target) {
-//         l++
-//       } else {
-//         res.push([nums[i], nums[l], nums[r]])
-//         l++
-//         r--
-//         while (nums[l] === nums[l - 1]) l++
-//         while (nums[r] === nums[r + 1]) r--
-//       }
-//     }
-//   }
-//   return res
-// }
 // 用`双端指针`的方式，将三数之和转化为两数之和
 // function findThree(nums, target) {
 //   const res = []

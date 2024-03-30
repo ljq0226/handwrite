@@ -27,7 +27,7 @@ function distributeRedEnvelope(totalMoney, totalPeople) {
   res.push(Number(totalMoney.toFixed(2)));
 
   return res;
-}
+}z
 
 // 测试
 console.log(distributeRedEnvelope(10, 5));

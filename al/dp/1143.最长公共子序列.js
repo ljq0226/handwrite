@@ -24,3 +24,9 @@ var longestCommonSubsequence = function(text1, text2) {
      }
      return dp[m][n];
  };
+for (const key in object) {
+    if (Object.hasOwnProperty.call(object, key)) {
+        const element = object[key];
+        
+    }
+}

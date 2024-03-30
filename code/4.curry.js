@@ -9,7 +9,6 @@ function curry(fn) {
     }
   }
 }
-
 const sum = (a, b, c) => {
   return a + b + c
 }

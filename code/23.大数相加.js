@@ -43,3 +43,13 @@ let num1 = '12345678901234567890'
 let num2 = '98765432109876543210'
 let sum = bigNumberAdd(num1, num2)
 console.log(sum)
+
+function bigNumberAdd(a, b) {
+  const bigA = BigInt(a);
+  const bigB = BigInt(b);
+
+  return (bigA + bigB).toString();
+}
+
+console.log(bigNumberAdd("12345678901234567890", "98765432109876543210"));
+

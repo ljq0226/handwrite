@@ -48,7 +48,6 @@ console.log(JSON.stringify(array2Tree(arr), null, 2))
 
 // 给你一个对象{'a':1,'b.c.d':2,'b.c.e':3}，实现一个函数把它展开成{'a':1,'b':{'c':{'d':2,'e':3}}}这种形式。
 const obj = { a: 1, 'b.c.d': 2, 'b.c.e': 3 }
-
 function flattenObject(obj) {
   const res = {}
   for (const key in obj) {
@@ -67,3 +66,35 @@ function flattenObject(obj) {
   return res
 }
 console.log(JSON.stringify(flattenObject(obj), null, 2))
+
+//
+
+const dataSource = [
+  { value: 1, id: 'a' },
+  { value: 2, id: 'b' },
+  { value: 4, id: 'b' },
+  { value: 14, id: 'v' },
+  { value: 5, id: 'd' },
+  { value: 2, id: 'd' },
+  { value: 11, id: 'a' },
+  { value: 54, id: 'c' },
+  { value: 12, id: 'a' },
+  { value: 13, id: 'a' },
+]
+const transArr = (data) => {
+  data.sort((a, b) => a.value - b.value)
+  const map = {}
+  const res = []
+  data.forEach((item) => {
+    const { value, id } = item
+    if (map[id]) {
+      map[id].push({ value, id })
+    } else {
+      map[id] = [{ value, id }]
+      res.push(map[id])
+    }
+  })
+  return res
+}
+
+console.log(transArr(dataSource))

@@ -12,7 +12,6 @@ function deboucne(fn, wait) {
     }, wait)
   }
 }
-
 function debounce(fn, time) {
   let timer = null
   let isFirstCall = true

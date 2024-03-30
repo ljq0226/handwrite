@@ -15,6 +15,7 @@ var levelOrder = function (root) {
   }
   return res
 }
+
 function bfs(root) {
   const res = []
   const queue = []

@@ -46,3 +46,26 @@ console.log('nums', nums)
 console.log(quickSort(nums))
 
 console.log(quickSort2(nums))
+
+function mergeSort(arr) {
+  if (arr.length <= 1) return arr
+  const mid = Math.floor(arr.length / 2)
+  const left = mergeSort(arr.slice(0, mid))
+  const right = mergeSort(arr.slice(mid))
+  return merge(left, right)
+}
+function merge(left, right) {
+  let res = []
+  while (left.length && right.length) {
+    if (left[0] <= right[0]) {
+      res.push(left.shift())
+    } else {
+      res.push(right.shift())
+    }
+  }
+  return res.concat(left.slice(), right.slice())
+}
+
+
+console.log(mergeSort([5, 3, 8, 4, 9, 1, 6, 2, 7]))
+// 输出：[1, 2, 3, 4, 5, 6, 7, 8, 9]
