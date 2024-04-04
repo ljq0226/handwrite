@@ -1,33 +1,39 @@
 let str = '[12,[3,4,[5]],[6,7],8]'
-//JSON.stringify
+//1.JSON.parse
+//2.parse string
 const convert = (str) => {
   let curLevel = 0
-  const map = {}
-  for (let i = 0; i < 4; i++) {
-    map[i] = []
-  }
+  const map = { 0: [] }
   let num = ''
+  const pushNum = () => {
+    if (num !== '') {
+      map[curLevel].push(Number(num))
+      num = ''
+    }
+  }
   for (let i = 0; i < str.length; i++) {
     const c = str[i]
-    if (Number.isInteger(+c)) {
+    if (c >= '0' && c <= '9') {
       num += c
-    } else if (c == ',') {
-      num !== '' && map[curLevel].push(num)
-      num = ''
     } else if (c == '[') {
       curLevel++
+      if (!map[curLevel]) {
+        map[curLevel] = []
+      }
+    } else if (c == ',') {
+      pushNum()
     } else if (c == ']') {
-      ;+num && map[curLevel].push(num)
-      num = ''
+      pushNum()
       map[curLevel - 1].push(map[curLevel])
       map[curLevel--] = []
     }
   }
-  let res = map[0]
-  return res
+  return map[0]
 }
 
 console.log(JSON.stringify(convert(str)))
+
+//3. recursion
 function strToArray(str) {
   let result = []
   let temp = ''
