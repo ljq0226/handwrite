@@ -18,7 +18,6 @@ function forCircle(arr) {
   return arr
 }
 
-
 //3. indexOf include filter
 
 function IndexOfArr(arr) {
@@ -31,26 +30,25 @@ function IndexOfArr(arr) {
   // }
   return newArr
 }
-function filterArr(arr){
+function filterArr(arr) {
   return arr.filter((item, index) => {
-    return arr.indexOf(item) === index;
-  });
+    return arr.indexOf(item) === index
+  })
 }
 
-//4.map 
-function mapArray(arr){
-  const map = new Map();
-  const res = [];
+//4.map
+function mapArray(arr) {
+  const map = new Map()
+  const res = []
   for (let i = 0; i < arr.length; i++) {
     if (!map.has(arr[i])) {
       map.set(arr[i], true)
-      res.push(arr[i]);
+      res.push(arr[i])
     }
   }
-  return res;
+  return res
 }
 console.log('arr', IndexOfArr(arr))
-
 
 // 数组交集
 // 输入：nums = [[3,1,2,4,5],[1,2,3,4],[3,4,5,6]]
@@ -59,44 +57,63 @@ console.log('arr', IndexOfArr(arr))
  * @param {number[][]} nums
  * @return {number[]}
  */
+function intersection(nums) {
+  let set = new Set(nums[0])
+  for (let i = 1; i < nums.length; i++) {
+    let temp = new Set()
+    for (const num of nums[i]) {
+      if (set.has(num)) {
+        temp.add(num)
+      }
+    }
+    set = temp
+    temp = null
+  }
+  return [...set]
+  // let a = nums[0]
+  // for (const num of nums) {
+  //   a = a.filter(_=>num.includes(_))
+  // }
+  // return a
+}
+
 var intersection = function (nums) {
-    
   // map
-  if (nums.length === 0) return [];
-  let map = new Map();
+  if (nums.length === 0) return []
+  let map = new Map()
   let res = []
   for (let num of nums[0]) {
-      map.set(num, (map.get(num) || 0) + 1);
+    map.set(num, (map.get(num) || 0) + 1)
   }
   for (let i = 1; i < nums.length; i++) {
-      let newMap = new Map()
-      for (const num of nums[i]) {
-          if (map.has(num)) {
-              newMap.set(num, map.get(num) + 1)
-          }
+    let newMap = new Map()
+    for (const num of nums[i]) {
+      if (map.has(num)) {
+        newMap.set(num, map.get(num) + 1)
       }
-      console.log(newMap)
-      map = newMap
+    }
+    console.log(newMap)
+    map = newMap
   }
   for (const [key, value] of map.entries()) {
-      if (value === nums.length) {
-          res.push(key)
-      }
+    if (value === nums.length) {
+      res.push(key)
+    }
   }
   return res.sort((a, b) => a - b)
 
   //计数排序
   const counts = new Array(1000 + 10).fill(0)
   for (const numArr of nums) {
-      for (const num of numArr) {
-          counts[num]++
-      }
+    for (const num of numArr) {
+      counts[num]++
+    }
   }
-  return counts.map((val, idx) => val === nums.length ? idx : 0).filter(val => val !== 0)
+  return counts.map((val, idx) => (val === nums.length ? idx : 0)).filter((val) => val !== 0)
   // 常规解法
   let a = nums[0]
   for (const num of nums) {
-      a = a.filter(_ => num.includes(_))
+    a = a.filter((_) => num.includes(_))
   }
   return a.sort((a, b) => a - b)
-};
+}

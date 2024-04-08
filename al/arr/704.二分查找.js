@@ -16,7 +16,6 @@ var search = function (nums, target) {
   }
   return res ? res : -1
 }
-
 function search(nums, target) {
   const len = nums.length
   let [l, r] = [0, len - 1]

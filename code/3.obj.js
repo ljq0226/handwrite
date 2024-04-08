@@ -4,3 +4,5 @@ function MyNew(constructor, ...args) {
   const res = constructor.apply(obj, args)
   return typeof res === 'object' ? res : obj
 }
+
+
