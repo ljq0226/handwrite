@@ -1,16 +1,12 @@
-// function interval() {
-//   setTimeout(() => {
-//     console.log(1)
-//     interval()
-//   }, 1000)
-// }
-function processInput(input) {
-    if (typeof input === "string") {
-        return input.toUpperCase();
-    }
-    else if (typeof input === "number") {
-        return input * 2;
-    }
+const parseUrl = (url) => {
+  const args = url.substr(url.indexOf('?') + 1).split('&')
+  const obj = {}
+  args.map((item) => {
+    const [key, value] = item.split('=')
+    obj[key] = value
+  })
+  return obj
 }
-var result1 = processInput("hello"); // result1 的类型为 string
-var result2 = processInput(10); // result2 的类型为 number
+
+const res = parseUrl('https://www.meituan.com/index.html?a=test&b=2.1')
+console.log('res', res)
